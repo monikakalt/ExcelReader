@@ -45,6 +45,11 @@ namespace ExcelReader.Controllers
                 var firstSheet = package.Workbook.Worksheets.First();
                 int colCount = firstSheet.Dimension.End.Column; //get Column Count
                 int rowCount = firstSheet.Dimension.End.Row; //get row count
+                var isCorrect = CheckHeaders(firstSheet.Cells);
+                if (!isCorrect)
+                {
+                    return BadRequest("Incorrect headers. Should be: Vardas, Aprasymas, Poreikiai, Busena, Photo, Miestas");
+                }
                 for (int row = 1; row <= rowCount; row++)
                 {
                     for (int col = 1; col <= colCount; col++)
@@ -69,8 +74,24 @@ namespace ExcelReader.Controllers
 
                  return Ok(completeSql);
             }
+
+            bool CheckHeaders(ExcelRange cells)
+            {
+                var vardas = cells[1, 1].Value?.ToString().Trim();
+                var aprasymas = cells[1, 2].Value?.ToString().Trim();
+                var poreikiai = cells[1, 3].Value?.ToString().Trim();
+                var busena = cells[1, 4].Value?.ToString().Trim();
+                var photo = cells[1, 5].Value?.ToString().Trim();
+                var miestas = cells[1, 6].Value?.ToString().Trim();
+
+                if (vardas == "Vardas" && aprasymas == "Aprasymas" && poreikiai == "Poreikiai" && busena == "Busena" &&
+                    photo == "Photo" && miestas == "Miestas")
+                    return true;
+                return false;
+            }
         }
     }
+    
     /// <summary>
     /// Add extra parameters for uploading files in swagger.
     /// </summary>

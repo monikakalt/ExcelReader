@@ -60,7 +60,7 @@ namespace ExcelReader.Controllers
                         var vardas = firstSheet.Cells[row, 1].Value?.ToString().Trim();
                         var aprasymas = firstSheet.Cells[row, 2].Value?.ToString().Trim();
                         var poreikiai = firstSheet.Cells[row, 3].Value?.ToString().Trim();
-                        var busena = firstSheet.Cells[row, 4].Value?.ToString().Trim();
+                        var busena = 0;
                         var photo = firstSheet.Cells[row, 5].Value?.ToString().Trim();
                         var miestas = firstSheet.Cells[row, 6].Value?.ToString().Trim();
 

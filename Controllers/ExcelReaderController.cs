@@ -62,6 +62,14 @@ namespace ExcelReader.Controllers
                         var poreikiai = firstSheet.Cells[row, 3].Value?.ToString().Trim();
                         var busena = 0;
                         var photo = firstSheet.Cells[row, 5].Value?.ToString().Trim();
+                        if (photo == "M")
+                        {
+                            photo = "pirma.jpg";
+                        }
+                        else
+                        {
+                            photo = "antra.jpg";
+                        }
                         var miestas = firstSheet.Cells[row, 6].Value?.ToString().Trim();
 
                         var line = $"('{vardas}', '{aprasymas}', '{poreikiai}', {busena}, '{photo}', '{miestas}' )";

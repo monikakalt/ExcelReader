@@ -39,17 +39,17 @@ namespace ExcelReader.Controllers
             var lines = new HashSet<string>();
             var completeSql = "";
             var headerSql =
-                @$"INSERT INTO svajoniu_aprasymas ( `vardas`, `aprasymas`, `poreikiai`, `busena`, `photo`, `miestas` ) VALUES ";
+                @$"INSERT INTO svajoniu_aprasymas ( `vardas`, `aprasymas`, `poreikiai`, `busena`, `photo`, `miestas`, `IsVisible` ) VALUES ";
             using (var package = new ExcelPackage(file.OpenReadStream()))
             {
                 var firstSheet = package.Workbook.Worksheets.First();
                 int colCount = firstSheet.Dimension.End.Column; //get Column Count
                 int rowCount = firstSheet.Dimension.End.Row; //get row count
-                var isCorrect = CheckHeaders(firstSheet.Cells);
-                if (!isCorrect)
-                {
-                    return BadRequest("Incorrect headers. Should be: Vardas, Aprasymas, Poreikiai, Busena, Photo, Miestas");
-                }
+                // var isCorrect = CheckHeaders(firstSheet.Cells);
+                // if (!isCorrect)
+                // {
+                //     return BadRequest("Incorrect headers. Should be: Vardas, Aprasymas, Poreikiai, Busena, Photo, Miestas");
+                // }
                 for (int row = 1; row <= rowCount; row++)
                 {
                     for (int col = 1; col <= colCount; col++)

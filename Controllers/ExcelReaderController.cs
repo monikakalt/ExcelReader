@@ -71,8 +71,8 @@ namespace ExcelReader.Controllers
                             photo = "antra.jpg";
                         }
                         var miestas = firstSheet.Cells[row, 6].Value?.ToString().Trim();
-
-                        var line = $"('{vardas}', '{aprasymas}', '{poreikiai}', {busena}, '{photo}', '{miestas}' )";
+                        var isVisible = firstSheet.Cells[row, 7].Value?.ToString().Trim();
+                        var line = $"('{vardas}', '{aprasymas}', '{poreikiai}', {busena}, '{photo}', '{miestas}', {isVisible} )";
                         lines.Add(line);
                     }
                 }
@@ -91,7 +91,7 @@ namespace ExcelReader.Controllers
                 var busena = cells[1, 4].Value?.ToString().Trim();
                 var photo = cells[1, 5].Value?.ToString().Trim();
                 var miestas = cells[1, 6].Value?.ToString().Trim();
-
+                var isVisible = cells[1, 7].Value?.ToString().Trim();
                 if (vardas == "Vardas" && aprasymas == "Aprasymas" && poreikiai == "Poreikiai" && busena == "Busena" &&
                     photo == "Photo" && miestas == "Miestas")
                     return true;
